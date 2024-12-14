@@ -1,0 +1,236 @@
+/* Resetare stiluri implicite */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Stiluri globale */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fa;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: #2980b9;
+    font-size: 36px;
+}
+
+/* Tabel feedback */
+.feedback-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.feedback-table th {
+    background-color: #2980b9;
+    color: #fff;
+    padding: 12px;
+    text-align: left;
+    font-size: 18px;
+}
+
+.feedback-table td {
+    background-color: #fff;
+    padding: 12px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.feedback-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.delete-btn {
+    background-color: #e74c3c; /* Roșu pentru butonul de Delete */
+    color: #fff;  /* Text alb */
+    border: none;  /* Fără bordură */
+    padding: 8px 16px;  /* Padding pentru buton */
+    border-radius: 5px;  /* Marginile butonului rotunjite */
+    cursor: pointer;  /* Cursor pointer pentru a arăta că este clicabil */
+    transition: background-color 0.3s ease;  /* Efect de tranziție la hover */
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;  /* Roșu mai închis când este hover */
+}
+
+.delete-btn:focus {
+    outline: none;  /* Elimină border-ul la focus */
+    background-color: #c0392b;  /* Roșu mai închis la focus */
+}
+/* Pagina de paginare */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+}
+
+.pagination li {
+    display: inline;
+}
+
+.pagination a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #333;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination a.active {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+    color: #007bff;
+}
+
+.pagination .prev a,
+.pagination .next a {
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.pagination .prev a:hover,
+.pagination .next a:hover {
+    background-color: #ddd;
+    color: #007bff;
+}
+
+.pagination .prev a,
+.pagination .next a {
+    color: #007bff;
+}
+
+.pagination span {
+    padding: 8px 16px;
+    display: inline-block;
+    background-color: #f1f1f1;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-feedback-btn {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.add-feedback-btn .btn {
+    background-color: #28a745; 
+    color: white;
+    padding: 12px 24px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-feedback-btn .btn:hover {
+    background-color: #218838; 
+}
+
+
+select {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+select:hover {
+    border-color: #888;
+    background-color: #f1f1f1;
+}
+
+.filter-btn {
+    padding: 10px 20px;  
+    font-size: 16px;  
+    background-color: #2980b9;  
+    color: white;  
+    border: none;  
+    border-radius: 5px;
+    cursor: pointer;  
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: #1d6fa5;  
+    transform: scale(1.05); 
+}
+
+.filter-btn:focus {
+    outline: none; 
+    background-color: #1d6fa5; 
+}
+
+
+option {
+    padding: 10px;
+}
+
+select:focus {
+    border-color: #4CAF50;
+    background-color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .feedback-table th,
+    .feedback-table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .delete-btn {
+        padding: 6px 12px;
+    }
+}

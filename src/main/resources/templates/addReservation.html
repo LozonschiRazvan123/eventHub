@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Reservation - EventHub</title>
+    <link rel="stylesheet" href="/css/addReservation.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Add a New Reservation</h1>
+
+        <div th:if="${message}" class="alert">
+            <p th:text="${message}"></p>
+        </div>
+
+        <form th:action="@{/reservations}" th:object="${reservationRequest}" method="post" class="reservation-form">
+            <div class="form-group">
+                <label for="eventId">Select Event:</label>
+                <select id="eventId" th:field="*{event.eventId}" required class="form-input">
+                    <option value="" disabled selected>Select an event</option>
+                    <option th:each="event : ${events}" 
+                            th:value="${event.eventId}" 
+                            th:text="${event.title}">Event</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="numberOfTickets">Number of Tickets:</label>
+                <input type="number" id="numberOfTickets" th:field="*{numberOfTickets}" required class="form-input" placeholder="Enter number of tickets">
+            </div>
+
+            <div class="form-group">
+                <label for="paymentStatus">Payment Status:</label>
+                <select id="paymentStatus" th:field="*{paymentStatus}" required class="form-input">
+                    <option value="PAID">Paid</option>
+                    <option value="PAYED CASH AT EVENT">PAYED CASH AT EVENT</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="qrCode">QR Code:</label>
+                <input type="text" id="qrCode" th:field="*{qrCode}" required class="form-input" placeholder="Enter QR code">
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="submit-btn">Submit Reservation</button>
+            </div>
+        </form>
+
+        <br>
+        <a href="/reservations" class="back-link">Back to Reservations</a>
+    </div>
+</body>
+</html>

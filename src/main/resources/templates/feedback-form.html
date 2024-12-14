@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <link rel="stylesheet" href="/css/feedback-form.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Feedback form</h1>
+    <form th:action="@{/feedbacks/save}" method="POST">
+    <div class="form-group">
+        <label for="event">Select event:</label>
+        <select id="event" name="event.eventId" required>
+            <option th:each="event : ${events}" 
+                th:value="${event.eventId}" 
+                th:text="${event.title}">
+            </option>
+        </select>
+    </div>
+
+    <div class="form-group">
+    <label for="user">Your name:</label>
+    <!-- Afișează numele utilizatorului (read-only) -->
+    <input type="text" id="user" name="user.name" th:value="${user.name}" readonly />
+
+    <!-- Trimite ID-ul utilizatorului (hidden) -->
+    <input type="hidden" name="user.userId" th:value="${user.userId}" />
+</div>
+
+    <div class="form-group">
+        <label for="comments">Comments:</label>
+        <textarea id="comments" name="comments" rows="4" required></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="rating">Rating:</label>
+        <select id="rating" name="rating" required>
+            <option value="1">1 - Poor</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 - Excellent</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn-submit">Submit feedback</button>
+    </div>
+</form>
+</div>
+
+</body>
+</html>

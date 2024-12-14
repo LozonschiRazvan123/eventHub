@@ -10,6 +10,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan(basePackages = "Model")
 @EnableJpaRepositories(basePackages = "Repository") 
 @ComponentScan(basePackages = "SeedData")
+@ComponentScan(basePackages = "Controller")
+@ComponentScan(basePackages = "Service")
 public class EventHubApplication {
 
 	public static void main(String[] args) {

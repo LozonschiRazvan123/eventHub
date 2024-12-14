@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Event - EventHub</title>
+    <link rel="stylesheet" href="/css/createEvent.css">
+</head>
+<body>
+    <div class="content">
+        <h1>Edit Event</h1>
+
+        <form th:action="@{/events/{id}/update(id=${event.eventId})}" th:object="${event}" method="post">
+            <label for="title">Event Title:</label>
+            <input type="text" id="title" th:field="*{title}" placeholder="Enter event title" required>
+            <br>
+
+            <label for="description">Event Description:</label>
+            <textarea id="description" th:field="*{description}" placeholder="Enter event description" required></textarea>
+            <br>
+
+            <label for="location">Event Location:</label>
+            <input type="text" id="location" th:field="*{location}" placeholder="Enter event location" required>
+            <br>
+
+            <label for="maxTickets">Max Tickets:</label>
+            <input type="number" id="maxTickets" th:field="*{maxTickets}" placeholder="Enter max tickets" required>
+            <br>
+
+            <label for="organizer">Organizer:</label>
+            <select id="organizer" th:field="*{organizer}" required>
+                <option value="" disabled selected>Select an admin</option>
+                <option th:each="admin : ${admins}" 
+                        th:value="${admin.userId}" 
+                        th:text="${admin.name}">
+                </option>
+            </select>
+            <br>
+
+            <label for="createdAt">Created At:</label>
+            <input type="date" id="createdAt" th:field="*{createdAt}" required readonly>
+            <br>
+
+            <label for="updatedAt">Updated At:</label>
+            <input type="text" id="updatedAt" 
+                   th:value="${#dates.format(event.updatedAt != null ? event.updatedAt : #dates.createNow(), 'yyyy-MM-dd HH:mm:ss')}" 
+                   readonly>
+            <br>
+
+            <button type="submit">Update Event</button>
+        </form>
+    </div>
+</body>
+</html>

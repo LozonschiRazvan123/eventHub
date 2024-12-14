@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventHub - Dashboard</title>
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <style>
+        .submenu {
+            display: none;
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .submenu.open {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>EventHub</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="#" th:href="@{/menu}" class="active">
+                            <span class="icon">🏠</span> Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" th:href="@{/events}">
+                            <span class="icon">📅</span> Events
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" th:href="@{/reservations}">
+                            <span class="icon">🛒</span> Reservations
+                        </a>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="#" onclick="toggleSubmenu(event)">
+                            <span class="icon">💬</span> Feedback
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="/feedbacks?page=0&size=10">View all feedback</a></li>
+							<li><a href="/feedbacks/new">Leave feedback</a></li>
+                        </ul>
+                    </li>
+                     <li>
+                        <a href="#" th:href="@{/payments}">
+                            <span class="icon">💳</span> Payments
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <header class="content-header">
+                <h1>Welcome to EventHub Dashboard</h1>
+                <p>Here you can find an overview of the most important metrics and actions.</p>
+            </header>
+
+            <section class="dashboard-cards">
+                <div class="card">
+                    <h3>Upcoming Events</h3>
+                    <p><strong>8</strong> events scheduled this week.</p>
+                </div>
+                <div class="card">
+                    <h3>Total Reservations</h3>
+                    <p><strong>150</strong> reservations made this month.</p>
+                </div>
+                <div class="card">
+                    <h3>New Users</h3>
+                    <p><strong>25</strong> new users registered.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function toggleSubmenu(event) {
+            event.preventDefault();
+            const submenu = event.target.nextElementSibling;
+            if (submenu && submenu.classList.contains('submenu')) {
+                submenu.classList.toggle('open');
+            }
+        }
+    </script>
+</body>
+</html>

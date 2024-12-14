@@ -25,12 +25,12 @@ public class DataInitializer {
 
         return args -> {
         	System.out.println("Initializing database with seed data...");
-        	User user1 = new User(1L, "John Doe", "john.doe@example.com", "hashedPassword1", "USER");
-            User user2 = new User(2L, "Jane Smith", "jane.smith@example.com", "hashedPassword2", "ADMIN");
+        	User user1 = new User(1L,  "john.doe@example.com", "hashedPassword1", "John Doe", "USER");
+            User user2 = new User(2L, "jane.smith@example.com", "hashedPassword2", "Jane Smith", "ADMIN");
             userRepository.saveAll(Arrays.asList(user1, user2));
 
             for (int i = 1; i <= 10; i++) {
-                Event event = new Event((long) i, "Event " + i, "Description for event " + i, "Location " + i, new Date(), 500 + i * 10, new Date(), new Date(), user2);
+                Event event = new Event((long) i, "Event " + i, "Description for event " + i, "Location " + i, 500 + i * 10, new Date(), new Date(), user2);
                 event.setOrganizer(user1);
                 eventRepository.save(event);
 
@@ -42,7 +42,9 @@ public class DataInitializer {
                 }
 
                 // Reservations
-                Reservation reservation = new Reservation(null, user1, event, i, "PAID", "QR" + i, new Date());
+                Reservation reservation = new Reservation(null, user1, event, i, "PAID", "QR" + i, (i % 2 != 0) ? "activ" : "inactiv", new Date());
+                System.out.println("Creating reservation with status: " + ((i % 2 != 0) ? "activ" : "inactiv"));
+
                 reservationRepository.save(reservation);
 
                 // Payments

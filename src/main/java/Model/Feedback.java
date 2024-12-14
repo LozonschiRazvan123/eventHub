@@ -67,5 +67,37 @@ public class Feedback {
 	public Feedback() {
 		super();
 	}
+
+	public Long getFeedbackId() {
+		return feedbackId;
+	}
+
+	public void setFeedbackId(Long feedbackId) {
+		this.feedbackId = feedbackId;
+	}
+
+	public Integer getRating() {
+		return rating;
+	}
+
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
+	public Date getSubmittedAt() {
+		return submittedAt;
+	}
+
+	public void setSubmittedAt(Date submittedAt) {
+		this.submittedAt = submittedAt;
+	}
 	
 }

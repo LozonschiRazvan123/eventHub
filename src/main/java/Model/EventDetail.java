@@ -45,5 +45,35 @@ public class EventDetail {
 	public EventDetail() {
 		super();
 	}
+	public Long getEventDetailId() {
+		return eventDetailId;
+	}
+	public void setEventDetailId(Long eventDetailId) {
+		this.eventDetailId = eventDetailId;
+	}
+	public String getSeatNumber() {
+		return seatNumber;
+	}
+	public void setSeatNumber(String seatNumber) {
+		this.seatNumber = seatNumber;
+	}
+	public String getSection() {
+		return section;
+	}
+	public void setSection(String section) {
+		this.section = section;
+	}
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+	public Boolean getAvailability() {
+		return availability;
+	}
+	public void setAvailability(Boolean availability) {
+		this.availability = availability;
+	}
     
 }

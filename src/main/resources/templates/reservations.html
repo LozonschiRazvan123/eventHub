@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations - EventHub</title>
+    <link rel="stylesheet" href="/css/reservations.css">
+    <script>
+        function confirmCancel(event, form) {
+            event.preventDefault(); 
+            const confirmed = confirm("Are you sure you want to cancel this reservation?");
+            if (confirmed) {
+                form.submit();
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="content">
+        <h1>Reservations</h1>
+         <form th:action="@{/reservations/add}" method="get">
+            <button type="submit" class="add-reservation-button">Add Reservation</button>
+        </form>
+        <form th:action="@{/reservations}" method="get">
+    		<input type="text" name="search" placeholder="Search by event" th:value="${search}" />
+    		<button type="submit">Search</button>
+		</form>
+
+
+        <table>
+    <thead>
+        <tr>
+            <th>ID</th> <!-- Adăugăm coloană pentru ID -->
+            <th>Event Name</th>
+            <th>User Name</th>
+            <th>Number of Tickets</th>
+            <th>Date Reserved</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="reservation : ${reservations}">
+            <td th:text="${reservation.reservationId}">1</td>
+            <td th:text="${reservation.event.title}">Event Name</td>
+            <td th:text="${reservation.user.name}">User Name</td>
+            <td th:text="${reservation.numberOfTickets}">2</td>
+            <td th:text="${#dates.format(reservation.reservationDate, 'yyyy-MM-dd')}">2024-12-05</td>
+            <td th:text="${reservation.status}">Status</td>
+            <td>
+                <form th:action="@{/reservations/{id}/cancel(id=${reservation.reservationId})}" method="post"
+                      onsubmit="confirmCancel(event, this)">
+                    <button type="submit" class="cancel-button"
+                            th:disabled="${reservation.status != 'activ'}">Cancel</button>
+                </form>
+            </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(reservations)}">
+            <td colspan="7">No reservations found.</td>
+        </tr>
+    </tbody>
+</table>
+    </div>
+
+    <div class="pagination" th:if="${totalPages > 0}">
+    <ul>
+        <li th:if="${currentPage > 0}">
+            <a th:href="@{/reservations(page=${currentPage - 1}, size=30, search=${search}, status=${status})}">&laquo; Previous</a>
+        </li>
+
+        <!-- Verificăm dacă lista `visiblePages` nu este goală -->
+        <li th:if="${!#lists.isEmpty(visiblePages) and visiblePages[0] > 0}">
+            <a th:href="@{/reservations(page=0, size=30, search=${search}, status=${status})}">1</a>
+        </li>
+        <li th:if="${!#lists.isEmpty(visiblePages) and visiblePages[0] > 1}">
+            <span>...</span>
+        </li>
+
+        <li th:each="pageNumber : ${visiblePages}">
+            <a th:href="@{/reservations(page=${pageNumber}, size=30, search=${search}, status=${status})}"
+               th:text="${pageNumber + 1}"
+               th:classappend="${pageNumber == currentPage} ? 'active' : ''">
+            </a>
+        </li>
+
+        <li th:if="${!#lists.isEmpty(visiblePages) and visiblePages[visiblePages.size() - 1] < totalPages - 2}">
+            <span>...</span>
+        </li>
+        <li th:if="${!#lists.isEmpty(visiblePages) and visiblePages[visiblePages.size() - 1] < totalPages - 1}">
+            <a th:href="@{/reservations(page=${totalPages - 1}, size=30, search=${search}, status=${status})}" th:text="${totalPages}"></a>
+        </li>
+
+        <li th:if="${currentPage < totalPages - 1}">
+            <a th:href="@{/reservations(page=${currentPage + 1}, size=30, search=${search}, status=${status})}">Next &raquo;</a>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

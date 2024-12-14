@@ -1,0 +1,122 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f4f4f4;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+h1{
+	text-align: center
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+}
+
+.pagination li {
+    display: inline;
+}
+
+/* Stilul butoanelor de pagină */
+.pagination a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #333;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Stilul pentru butonul activ */
+.pagination a.active {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+/* Hover pe paginile numerotate */
+.pagination a:hover {
+    background-color: #ddd;
+    color: #007bff;
+}
+
+.pagination .prev a,
+.pagination .next a {
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.pagination .prev a:hover,
+.pagination .next a:hover {
+    background-color: #ddd;
+    color: #007bff;
+}
+
+.pagination .prev a,
+.pagination .next a {
+    color: #007bff;
+}
+
+.pagination span {
+    padding: 8px 16px;
+    display: inline-block;
+    background-color: #f1f1f1;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .pagination a {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+
+    .pagination .prev a,
+    .pagination .next a {
+        width: 40px;
+        height: 35px;
+    }
+}

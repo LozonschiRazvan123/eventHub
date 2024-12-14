@@ -50,6 +50,36 @@ public class Report {
 	public Report() {
 		super();
 	}
+	public Long getReportId() {
+		return reportId;
+	}
+	public void setReportId(Long reportId) {
+		this.reportId = reportId;
+	}
+	public String getGeneratedBy() {
+		return generatedBy;
+	}
+	public void setGeneratedBy(String generatedBy) {
+		this.generatedBy = generatedBy;
+	}
+	public Date getGeneratedAt() {
+		return generatedAt;
+	}
+	public void setGeneratedAt(Date generatedAt) {
+		this.generatedAt = generatedAt;
+	}
+	public String getFormat() {
+		return format;
+	}
+	public void setFormat(String format) {
+		this.format = format;
+	}
+	public byte[] getContent() {
+		return content;
+	}
+	public void setContent(byte[] content) {
+		this.content = content;
+	}
 	
 	
 }

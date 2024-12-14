@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - EventHub</title>
+    <link rel="stylesheet" href="css/events.css">
+</head>
+<body>
+    <div class="content">
+        <h1>Events</h1>
+        <a href="#" th:href="@{/events/new}">Create new event</a>
+        <a href="#" th:href="@{/menu}">Return to menu</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Event name</th>
+                    <th>Date create</th>
+                    <th>Location</th>
+                    <th>Tickets</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="event : ${events}">
+                    <td th:text="${event.title}">Event Name</td>
+                    <td th:text="${event.createdAt}">Date</td>
+                    <td th:text="${event.location}">Location</td>
+                    <td th:text="${event.maxTickets}">Tickets</td>
+                    <td class="actions">
+                        <a th:href="@{/events/{id}/edit(id=${event.eventId})}">Edit</a>
+                        <form th:action="@{/events/{id}/delete(id=${event.eventId})}" method="post" onsubmit="return confirm('Are you sure you want to delete this event?')">
+                            <input type="hidden" name="_method" value="DELETE"/>
+                            <button type="submit" class="delete-button">Delete</button>
+                        </form>
+                        <!-- Formular pentru descărcarea raportului -->
+                        <form th:action="@{/events/{id}/report(id=${event.eventId})}" method="get">
+                            <input type="hidden" name="eventId" th:value="${event.eventId}" />
+                            <select name="format">
+                                <option value="pdf">PDF</option>
+                                <option value="excel">Excel</option>
+                            </select>
+                            <button type="submit">Download Report</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

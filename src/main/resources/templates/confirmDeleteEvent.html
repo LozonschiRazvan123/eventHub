@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Delete Event - EventHub</title>
+</head>
+<body>
+    <h1>Are you sure you want to delete this event?</h1>
+    
+    <p th:text="'Event Title: ' + ${event.title}"></p>
+    <p th:text="'Event Description: ' + ${event.description}"></p>
+    
+    <!-- Form for confirming the deletion -->
+    <form th:action="@{/events/{id}/delete(id=${event.eventId})}" method="post">
+        <button type="submit">Yes, delete event</button>
+    </form>
+    
+    <!-- Cancel button to redirect back to events list -->
+    <a href="/events">No, go back to events</a>
+</body>
+</html>

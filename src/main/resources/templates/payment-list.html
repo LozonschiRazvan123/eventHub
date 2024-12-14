@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Plăților</title>
+    <link rel="stylesheet" href="/css/payment-list.css">
+</head>
+<body>
+    <h1>Lista platilor</h1>
+    <form th:action="@{/payments}" method="get">
+    	<label for="search">Cauta dupa titlul evenimentului:</label>
+    	<input type="text" id="search" name="search" th:value="${search}">
+    	<button type="submit">Cauta</button>
+	</form>
+    <a href="/payments/add">Adauga o plata noua</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Rezervare</th>
+                <th>Utilizator</th>
+                <th>Suma</th>
+                <th>Metoda</th>
+                <th>Status</th>
+                <th>Data</th>
+                <th>Acțiuni</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="payment : ${payments}">
+                <td th:text="${payment.paymentId}"></td>
+                <td th:text="${payment.reservation.event.title}"></td>
+                <td th:text="${payment.user.name}"></td>
+                <td th:text="${payment.amount}"></td>
+                <td th:text="${payment.paymentMethod}"></td>
+                <td th:text="${payment.status}"></td>
+                <td th:text="${#dates.format(payment.paymentDate, 'yyyy-MM-dd')}"></td>
+                <td>
+                    <a th:href="@{/payments/edit/{id}(id=${payment.paymentId})}">Editeaza</a>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+   <div class="pagination">
+    <ul>
+        <li th:if="${currentPage > 1}">
+            <a th:href="@{/payments(page=${currentPage - 1}, search=${search})}">&laquo; Previous</a>
+        </li>
+        <li th:each="pageNumber : ${visiblePages}">
+            <a th:href="@{/payments(page=${pageNumber}, search=${search})}"
+               th:text="${pageNumber}"
+               th:classappend="${pageNumber == currentPage} ? 'active' : ''"></a>
+        </li>
+        <li th:if="${currentPage < totalPages}">
+            <a th:href="@{/payments(page=${currentPage + 1}, search=${search})}">Next &raquo;</a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

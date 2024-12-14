@@ -1,0 +1,114 @@
+/* Resetare margini și padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Stiluri pentru întreaga pagină */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    padding: 40px 0;
+    color: #333;
+    text-align: center;
+}
+
+/* Container pentru întreaga pagină */
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Titlul formularului */
+h1 {
+    color: #4CAF50;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+/* Stiluri pentru grupurile de câmpuri */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Etichetele câmpurilor */
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+/* Inputuri, selecturi și textarea */
+input[type="text"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 5px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Dimensiuni textarea */
+textarea {
+    resize: vertical;
+}
+
+/* Stilizarea butonului de submit */
+.btn-submit {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #45a049;
+}
+
+.btn-submit:focus {
+    outline: none;
+}
+
+/* Adaptabilitate pentru ecrane mici */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .btn-submit {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+}

@@ -49,5 +49,37 @@ public class Notification {
 	public Notification() {
 		super();
 	}
+
+	public Long getNotificationId() {
+		return notificationId;
+	}
+
+	public void setNotificationId(Long notificationId) {
+		this.notificationId = notificationId;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+
+	public Date getSentAt() {
+		return sentAt;
+	}
+
+	public void setSentAt(Date sentAt) {
+		this.sentAt = sentAt;
+	}
 	
 }
