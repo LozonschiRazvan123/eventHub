@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Editează Plată</title>
+    <title>Editează Plata</title>
     <link rel="stylesheet" href="/css/payment-add.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
         <input type="number" id="amount" name="amount" th:field="*{amount}" required>
         <br><br>
 
-        <label for="paymentMethod">Metoda de plată:</label>
+        <label for="paymentMethod">Metoda de plata:</label>
         <input type="text" id="paymentMethod" name="paymentMethod" th:field="*{paymentMethod}" required>
         <br><br>
 
@@ -24,7 +24,7 @@
         </select>
         <br><br>
 
-        <label for="paymentDate">Data plății:</label>
+        <label for="paymentDate">Data platii:</label>
         <input type="date" id="paymentDate" name="paymentDate" th:field="*{paymentDate}" required>
         <br><br>
 
@@ -40,8 +40,8 @@
         </select>
         <br><br>
 
-        <button type="submit">Salvează</button>
-        <a href="/payments">Anulează</a>
+        <button type="submit">Salveaza</button>
+        <a href="/payments">Anuleaza</a>
     </form>
 </body>
 </html>

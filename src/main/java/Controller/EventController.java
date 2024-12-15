@@ -144,25 +144,24 @@ public class EventController {
         try {
             byte[] reportContent = reportService.generateReport(eventId, format);
 
-            // Setăm antetul pentru a indica faptul că vom trimite un fișier pentru descărcare
+
             HttpHeaders headers = new HttpHeaders();
             String fileName = "report";
             
-            // Modificăm extensia fișierului pe baza formatului ales
             if ("pdf".equalsIgnoreCase(format)) {
                 fileName += ".pdf";
                 headers.setContentType(MediaType.APPLICATION_PDF);
             } else if ("excel".equalsIgnoreCase(format)) {
-                fileName += ".xlsx";  // Asigurăm că extensia este .xlsx
+                fileName += ".xlsx";  
                 headers.setContentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
             } else {
                 return ResponseEntity.badRequest().build();
             }
 
-            // Setăm antetul Content-Disposition pentru a indica descărcarea fișierului
+
             headers.setContentDispositionFormData("attachment", fileName);
 
-            // Răspundem cu fișierul generat
+
             InputStreamResource resource = new InputStreamResource(new ByteArrayInputStream(reportContent));
             return ResponseEntity.ok()
                     .headers(headers)

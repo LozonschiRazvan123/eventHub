@@ -11,12 +11,10 @@
     <p th:text="'Event Title: ' + ${event.title}"></p>
     <p th:text="'Event Description: ' + ${event.description}"></p>
     
-    <!-- Form for confirming the deletion -->
     <form th:action="@{/events/{id}/delete(id=${event.eventId})}" method="post">
         <button type="submit">Yes, delete event</button>
     </form>
     
-    <!-- Cancel button to redirect back to events list -->
     <a href="/events">No, go back to events</a>
 </body>
 </html>

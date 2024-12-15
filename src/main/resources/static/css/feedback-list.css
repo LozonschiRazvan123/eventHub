@@ -1,11 +1,9 @@
-/* Resetare stiluri implicite */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Stiluri globale */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f7fa;
@@ -19,7 +17,6 @@ body {
     margin: 0 auto;
 }
 
-/* Header */
 header {
     text-align: center;
     margin-bottom: 30px;
@@ -30,7 +27,6 @@ h1 {
     font-size: 36px;
 }
 
-/* Tabel feedback */
 .feedback-table {
     width: 100%;
     border-collapse: collapse;
@@ -57,24 +53,23 @@ h1 {
 }
 
 .delete-btn {
-    background-color: #e74c3c; /* Roșu pentru butonul de Delete */
-    color: #fff;  /* Text alb */
-    border: none;  /* Fără bordură */
-    padding: 8px 16px;  /* Padding pentru buton */
-    border-radius: 5px;  /* Marginile butonului rotunjite */
-    cursor: pointer;  /* Cursor pointer pentru a arăta că este clicabil */
-    transition: background-color 0.3s ease;  /* Efect de tranziție la hover */
+    background-color: #e74c3c; 
+    color: #fff;  
+    border: none; 
+    padding: 8px 16px; 
+    border-radius: 5px;  
+    cursor: pointer; 
+    transition: background-color 0.3s ease;  
 }
 
 .delete-btn:hover {
-    background-color: #c0392b;  /* Roșu mai închis când este hover */
+    background-color: #c0392b; 
 }
 
 .delete-btn:focus {
-    outline: none;  /* Elimină border-ul la focus */
-    background-color: #c0392b;  /* Roșu mai închis la focus */
+    outline: none;  
+    background-color: #c0392b; 
 }
-/* Pagina de paginare */
 .pagination {
     display: flex;
     justify-content: center;

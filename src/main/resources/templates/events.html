@@ -33,7 +33,6 @@
                             <input type="hidden" name="_method" value="DELETE"/>
                             <button type="submit" class="delete-button">Delete</button>
                         </form>
-                        <!-- Formular pentru descărcarea raportului -->
                         <form th:action="@{/events/{id}/report(id=${event.eventId})}" method="get">
                             <input type="hidden" name="eventId" th:value="${event.eventId}" />
                             <select name="format">

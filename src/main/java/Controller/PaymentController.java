@@ -53,10 +53,8 @@ public class PaymentController {
         Page<Payment> paymentsPage;
 
         if (search != null && !search.isEmpty()) {
-            // Filtrează plățile după titlul evenimentului asociat
             paymentsPage = paymentRepository.findByReservation_Event_TitleContainingIgnoreCase(search, pageable);
         } else {
-            // Afișează toate plățile dacă nu există căutare
             paymentsPage = paymentRepository.findAll(pageable);
         }
 

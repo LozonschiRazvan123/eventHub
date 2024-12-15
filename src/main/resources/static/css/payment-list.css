@@ -21,14 +21,12 @@ body {
     border-radius: 8px;
 }
 
-/* Titlul paginii */
 h1 {
     text-align: center;
     color: #007bff;
     margin-bottom: 20px;
 }
 
-/* Stil pentru tabel */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -91,22 +89,22 @@ a:hover {
 }
 .pagination {
     display: flex;
-    justify-content: center; /* Centrare pe orizontală */
-    align-items: center; /* Aliniere pe verticală */
+    justify-content: center; 
+    align-items: center; 
     margin-top: 20px;
     list-style-type: none;
     padding: 0;
 }
 
 .pagination ul {
-    display: flex; /* Afișare elemente pe orizontală */
-    gap: 8px; /* Spațiere între elemente */
+    display: flex; 
+    gap: 8px;
     padding: 0;
     margin: 0;
 }
 
 .pagination li {
-    list-style: none; /* Elimină punctele (bullets) */
+    list-style: none; 
 }
 
 .pagination a {

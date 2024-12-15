@@ -38,16 +38,14 @@ public class ReportService {
 	}
 
 
-    // Generează raport PDF
 	private byte[] generatePdfReport(Event event) throws Exception {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PdfWriter writer = new PdfWriter(out);
         PdfDocument pdf = new PdfDocument(writer);
         Document document = new Document(pdf);
 
-        // Adăugăm informațiile evenimentului în PDF
         document.add(new Paragraph("Event Report (PDF)"));
-        document.add(new Paragraph("Event ID: " + event.getEventId()));  // Apel corect la metoda getEventId()
+        document.add(new Paragraph("Event ID: " + event.getEventId()));  
         document.add(new Paragraph("Event Name: " + event.getTitle()));
         document.add(new Paragraph("Event Description: " + event.getDescription()));
         document.add(new Paragraph("Location: " + event.getLocation()));
@@ -63,15 +61,14 @@ public class ReportService {
     // Generează raport Excel
     private byte[] generateExcelReport(Event event) throws Exception {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        XSSFWorkbook workbook = new XSSFWorkbook();  // Crează un workbook Excel
+        XSSFWorkbook workbook = new XSSFWorkbook();  
         Sheet sheet = workbook.createSheet("Event Report");
 
-        // Adăugăm titluri pentru raportul Excel
+
         Row headerRow = sheet.createRow(0);
         headerRow.createCell(0).setCellValue("Event Report (Excel)");
-        headerRow.createCell(1).setCellValue("Event ID: " + event.getEventId());  // Apel corect la metoda getEventId()
+        headerRow.createCell(1).setCellValue("Event ID: " + event.getEventId());  
 
-        // Adăugăm detaliile evenimentului în Excel
         Row dataRow1 = sheet.createRow(1);
         dataRow1.createCell(0).setCellValue("Event Name");
         dataRow1.createCell(1).setCellValue(event.getTitle());
@@ -98,7 +95,7 @@ public class ReportService {
 
         Row dataRow7 = sheet.createRow(7);
         dataRow7.createCell(0).setCellValue("Event Date & Time");
-        dataRow7.createCell(1).setCellValue(event.getCreatedAt().toString());  // Poți înlocui cu un câmp specific pentru data evenimentului
+        dataRow7.createCell(1).setCellValue(event.getCreatedAt().toString());  
 
         workbook.write(out);
         workbook.close();

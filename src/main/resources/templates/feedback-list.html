@@ -13,13 +13,13 @@
         </header>
 
         <div class="add-feedback-btn">
-            <button class="btn" onclick="window.location.href='/feedbacks/new'">Adaugă feedback</button>
+            <button class="btn" onclick="window.location.href='/feedbacks/new'">Adauga feedback</button>
         </div>
 
         <!-- Formular de filtrare -->
         <form method="get" action="/feedbacks">
             <select name="eventId">
-                <option value="">Selectează un eveniment</option>
+                <option value="">Selecteaza un eveniment</option>
                 <!-- Lista de evenimente -->
                 <option th:each="event : ${events}" 
                         th:value="${event.eventId}" 
@@ -27,10 +27,9 @@
                         th:selected="${event.eventId == selectedEventId}">
                 </option>
             </select>
-            <button type="submit" class="filter-btn">Filtrează</button>
+            <button type="submit" class="filter-btn">Filtreaza</button>
         </form>
 
-        <!-- Tabel cu feedback-uri -->
         <table class="feedback-table">
             <thead>
                 <tr>
@@ -38,7 +37,7 @@
                     <th>Nume utilizator</th>
                     <th>Comentarii</th>
                     <th>Rating</th>
-                    <th>Acțiuni</th>
+                    <th>Actiuni</th>
                 </tr>
             </thead>
             <tbody>
@@ -56,7 +55,6 @@
             </tbody>
         </table>
 
-        <!-- Paginare -->
         <div class="pagination" th:if="${feedbackPage.totalPages > 0}">
             <ul>
                 <li th:if="${feedbackPage.number > 0}">

@@ -49,7 +49,6 @@ public class FeedbackController {
         Pageable pageable = PageRequest.of(page, size);
         Page<Feedback> feedbackPage;
 
-        // Filtrare după eventId sau userId
         if (eventId != null) {
             feedbackPage = feedbackRepository.findByEventEventId(eventId, pageable);
         } else {

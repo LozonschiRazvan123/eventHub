@@ -1,11 +1,9 @@
-/* Resetare margini și padding */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Stiluri pentru întreaga pagină */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f9;
@@ -14,7 +12,6 @@ body {
     text-align: center;
 }
 
-/* Container pentru întreaga pagină */
 .container {
     width: 90%;
     max-width: 800px;
@@ -25,20 +22,17 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Titlul formularului */
 h1 {
     color: #4CAF50;
     font-size: 2rem;
     margin-bottom: 30px;
 }
 
-/* Stiluri pentru grupurile de câmpuri */
 .form-group {
     margin-bottom: 20px;
     text-align: left;
 }
 
-/* Etichetele câmpurilor */
 label {
     font-weight: bold;
     display: block;
@@ -47,7 +41,6 @@ label {
     color: #333;
 }
 
-/* Inputuri, selecturi și textarea */
 input[type="text"],
 textarea,
 select {
@@ -67,12 +60,10 @@ select:focus {
     outline: none;
 }
 
-/* Dimensiuni textarea */
 textarea {
     resize: vertical;
 }
 
-/* Stilizarea butonului de submit */
 .btn-submit {
     background-color: #4CAF50;
     color: white;
@@ -93,7 +84,6 @@ textarea {
     outline: none;
 }
 
-/* Adaptabilitate pentru ecrane mici */
 @media screen and (max-width: 768px) {
     .container {
         padding: 15px;
