@@ -36,8 +36,7 @@
                 <td th:text="${payment.status}"></td>
                 <td th:text="${#dates.format(payment.paymentDate, 'yyyy-MM-dd')}"></td>
                 <td>
-                    <a th:href="@{/payments/edit/{id}(id=${payment.paymentId})}">Editeaza</a>
-
+                     <a th:href="@{/payments/edit/{id}(id=${payment.paymentId})}">Editează</a>
                 </td>
             </tr>
         </tbody>

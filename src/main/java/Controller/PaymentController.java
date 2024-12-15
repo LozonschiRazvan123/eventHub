@@ -4,9 +4,7 @@ import Model.Event;
 import Model.Payment;
 import Model.User;
 import Repository.EventRepository;
-import Repository.FeedbackRepository;
 import Repository.PaymentRepository;
-import Repository.ReservationRepository;
 import Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -34,10 +32,8 @@ public class PaymentController {
 
     @Autowired
     private UserRepository userRepository;
-    
-    @Autowired
-    private FeedbackRepository feedbackRepository;
 
+    // List payments with pagination and search
     @GetMapping
     public String listPayments(
             @RequestParam(value = "page", defaultValue = "1") int page,
@@ -53,8 +49,10 @@ public class PaymentController {
         Page<Payment> paymentsPage;
 
         if (search != null && !search.isEmpty()) {
+            // Search payments by event title
             paymentsPage = paymentRepository.findByReservation_Event_TitleContainingIgnoreCase(search, pageable);
         } else {
+            // List all payments
             paymentsPage = paymentRepository.findAll(pageable);
         }
 
@@ -68,7 +66,7 @@ public class PaymentController {
         model.addAttribute("currentPage", currentPage + 1);
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("visiblePages", visiblePages.stream().map(p -> p + 1).collect(Collectors.toList()));
-        model.addAttribute("search", search); // Trimite termenul de căutare înapoi la template
+        model.addAttribute("search", search);
 
         return "payment-list";
     }
@@ -87,8 +85,8 @@ public class PaymentController {
     @GetMapping("/add")
     public String addPaymentForm(Model model) {
         model.addAttribute("payment", new Payment());
-        model.addAttribute("users", userRepository.findAll()); 
-        model.addAttribute("events", eventRepository.findAll()); 
+        model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("events", eventRepository.findAll());
         return "payment-add";
     }
 
@@ -97,79 +95,58 @@ public class PaymentController {
             @ModelAttribute Payment payment,
             @RequestParam Long userId,
             @RequestParam Long eventId) {
+
         User selectedUser = userRepository.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("Utilizator invalid: " + userId));
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user ID: " + userId));
 
         Event selectedEvent = eventRepository.findById(eventId)
-                .orElseThrow(() -> new IllegalArgumentException("Eveniment invalid: " + eventId));
+                .orElseThrow(() -> new IllegalArgumentException("Invalid event ID: " + eventId));
 
         payment.setUser(selectedUser);
         payment.setEvent(selectedEvent);
 
         paymentRepository.save(payment);
-
         return "redirect:/payments";
     }
+
     @GetMapping("/edit/{id}")
     public String editPaymentForm(@PathVariable Long id, Model model) {
         Optional<Payment> optionalPayment = paymentRepository.findById(id);
 
         if (optionalPayment.isPresent()) {
             model.addAttribute("payment", optionalPayment.get());
-            model.addAttribute("users", userRepository.findAll()); 
-            model.addAttribute("events", eventRepository.findAll()); 
-            return "payment-edit"; 
+            model.addAttribute("users", userRepository.findAll());
+            model.addAttribute("events", eventRepository.findAll());
+            return "payment-edit";
         } else {
             return "redirect:/payments";
         }
     }
-    
+
     @PostMapping("/edit/{id}")
     public String updatePayment(
             @PathVariable Long id,
             @ModelAttribute Payment payment,
             @RequestParam Long userId,
             @RequestParam Long eventId) {
-        Optional<Payment> optionalPayment = paymentRepository.findById(id);
 
-        if (optionalPayment.isPresent()) {
-            Payment existingPayment = optionalPayment.get();
+        Payment existingPayment = paymentRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid payment ID: " + id));
 
-            User selectedUser = userRepository.findById(userId)
-                    .orElseThrow(() -> new IllegalArgumentException("Utilizator invalid: " + userId));
+        User selectedUser = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user ID: " + userId));
 
-            Event selectedEvent = eventRepository.findById(eventId)
-                    .orElseThrow(() -> new IllegalArgumentException("Eveniment invalid: " + eventId));
+        Event selectedEvent = eventRepository.findById(eventId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid event ID: " + eventId));
 
-            existingPayment.setAmount(payment.getAmount());
-            existingPayment.setPaymentMethod(payment.getPaymentMethod());
-            existingPayment.setStatus(payment.getStatus());
-            existingPayment.setPaymentDate(payment.getPaymentDate());
-            existingPayment.setUser(selectedUser);
-            existingPayment.setEvent(selectedEvent);
+        existingPayment.setAmount(payment.getAmount());
+        existingPayment.setPaymentMethod(payment.getPaymentMethod());
+        existingPayment.setStatus(payment.getStatus());
+        existingPayment.setPaymentDate(payment.getPaymentDate());
+        existingPayment.setUser(selectedUser);
+        existingPayment.setEvent(selectedEvent);
 
-            paymentRepository.save(existingPayment);
-        }
-
+        paymentRepository.save(existingPayment);
         return "redirect:/payments";
     }
-    
-    @DeleteMapping("/delete/{id}")
-    public String deletePayment(@PathVariable Long id) {
-        if (paymentRepository.existsById(id)) {
-            paymentRepository.deleteById(id); 
-        }
-        return "redirect:/payments"; 
-    }
-    
-    @GetMapping("/delete/{id}")
-    public String deletePaymentRedirect(@PathVariable Long id) {
-        if (paymentRepository.existsById(id)) {
-        	feedbackRepository.deleteById(id);
-            paymentRepository.deleteById(id);
-        }
-        return "redirect:/payments";
-    }
-
-
 }
